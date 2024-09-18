@@ -20,6 +20,8 @@ def main():
 
     for cant_juniors in range(1, 5):
         for cant_seniors in range(1, 5):
+            print(f"Evaluando alternativa (J={cant_juniors}, S={cant_seniors})...")
+
             costo = cant_juniors * COSTO_JUNIOR + cant_seniors * COSTO_SENIOR
             if costo > PRESUPUESTO_TOTAL:
                 # La alternativa esta por encima del presupuesto, me la salteo
@@ -31,6 +33,7 @@ def main():
             todos_los_resultados.append(resultados)
 
     _guardar_resultados_en_excel(todos_los_resultados)
+    print("Los resultados se guardaron correctamente en el Excel.")
 
 
 def _guardar_resultados_en_excel(resultados: list[Resultados]) -> None:
