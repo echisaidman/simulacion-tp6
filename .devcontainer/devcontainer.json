@@ -30,7 +30,8 @@
                 "KevinRose.vsc-python-indent",
                 "donjayamanne.python-environment-manager",
                 "ms-python.black-formatter",
-                "eamodio.gitlens"
+                "eamodio.gitlens",
+				"mhutchie.git-graph"
 			],
             "settings": {
                 "files.exclude": {
