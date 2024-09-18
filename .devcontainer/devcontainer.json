@@ -1,0 +1,65 @@
+{
+	"name": "TP6 Simulacion - Python3",
+
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installZsh": true,
+			"configureZshAsDefaultShell": true,
+			"installOhMyZsh": true,
+			"installOhMyZshConfig": true,
+			"upgradePackages": true,
+			"username": "vscode",
+			"userUid": "automatic",
+			"userGid": "automatic"
+		}
+	},
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-docker",
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "VisualStudioExptTeam.vscodeintellicode",
+                "ms-python.debugpy",
+                "ms-python.isort",
+                "KevinRose.vsc-python-indent",
+                "donjayamanne.python-environment-manager",
+                "ms-python.black-formatter",
+                "eamodio.gitlens"
+			],
+            "settings": {
+                "files.exclude": {
+                    "**/.git": true,
+                    "**/.svn": true,
+                    "**/.hg": true,
+                    "**/CVS": true,
+                    "**/.DS_Store": true,
+                    "**/Thumbs.db": true,
+					".venv": true
+                },
+				"[python]": {
+					"diffEditor.ignoreTrimWhitespace": false,
+					"gitlens.codeLens.symbolScopes": [
+						"!Module"
+					],
+					"editor.formatOnSave": true,
+					"editor.wordBasedSuggestions": "off",
+					"editor.defaultFormatter": "ms-python.black-formatter",
+					"editor.codeActionsOnSave": {
+						"source.organizeImports": "always"
+					}
+				}
+            }
+		}
+	},
+
+	"postCreateCommand": "poetry install",
+	"postAttachCommand": "poetry run python -m simulacion_tp6.main",
+
+	"remoteUser": "vscode"
+}

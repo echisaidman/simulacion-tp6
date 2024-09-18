@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "simulacion-tp6"
+version = "0.1.0"
+description = ""
+authors = ["Ezequiel Saidman <ezequiel.saidman@chevron.com>"]
+readme = "README.md"
+packages = [{include = "simulacion_tp6"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pandas = "^2.2.2"
+openpyxl = "^3.1.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
