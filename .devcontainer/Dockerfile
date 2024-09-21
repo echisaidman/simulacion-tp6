@@ -17,5 +17,4 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 ENV PATH="/home/vscode/.local/bin:$PATH"
 
 # Install Poetry
-RUN curl -sSL https://install.python-poetry.org | python3 - \
-    && poetry config virtualenvs.in-project true
+RUN curl -sSL https://install.python-poetry.org | python3 -

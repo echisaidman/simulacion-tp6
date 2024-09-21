@@ -59,13 +59,14 @@
 				"python.analysis.diagnosticMode": "workspace",
 				"python.analysis.diagnosticSeverityOverrides": {
 					"reportConstantRedefinition": false
-				}
+				},
+				"python.analysis.autoImportCompletions": true
             }
 		}
 	},
 
 	"postCreateCommand": "poetry install",
-	"postAttachCommand": "poetry run python -m simulacion_tp6.main",
+	// "postAttachCommand": "poetry run python -m simulacion_tp6",
 
 	"remoteUser": "vscode"
 }

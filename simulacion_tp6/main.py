@@ -1,6 +1,5 @@
 import datetime
 
-import dateutil
 import dateutil.tz
 import pandas as pd
 from pandas import DataFrame
@@ -63,14 +62,5 @@ def _resultados_to_df(resultados: list[Resultados]) -> DataFrame:
 def _get_excel_sheet_name() -> str:
     local_datetime = datetime.datetime.now(
         dateutil.tz.gettz("America/Argentina/Buenos_Aires")
-    ).isoformat()
-
-    [date, time] = local_datetime.split("T")
-    date = date.replace("-", "")
-    [time, _] = time.split(".")
-    time = time.replace(":", "")
-    return f"{date}_{time}"
-
-
-if __name__ == "__main__":
-    main()
+    ).strftime(r"%Y%m%d_%H%M%S")
+    return local_datetime
