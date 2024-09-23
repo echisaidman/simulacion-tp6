@@ -19,19 +19,19 @@ class Simulacion:
         self.__condiciones_iniciales()
 
     def __condiciones_iniciales(self) -> None:
-        self.T = 0
-        self.TPLL = 0
+        self.T = 0.0
+        self.TPLL = 0.0
         self.TPSJ = [HV] * self.CANT_JUNIORS
         self.TPSS = [HV] * self.CANT_SENIORS
         self.NSJ = self.NSS = 0
         self.NTN = self.NTC = 0
         self.TTS: list[NormalCritico] = ["Critico"] * self.CANT_SENIORS
-        self.ITOJ = [0] * self.CANT_JUNIORS
-        self.ITOS = [0] * self.CANT_SENIORS
-        self.STLLN = self.STSN = self.STAN = 0
-        self.STLLC = self.STSC = self.STAC = 0
-        self.STOJ = [0] * self.CANT_JUNIORS
-        self.STOS = [0] * self.CANT_SENIORS
+        self.ITOJ = [0.0] * self.CANT_JUNIORS
+        self.ITOS = [0.0] * self.CANT_SENIORS
+        self.STLLN = self.STSN = self.STAN = 0.0
+        self.STLLC = self.STSC = self.STAC = 0.0
+        self.STOJ = [0.0] * self.CANT_JUNIORS
+        self.STOS = [0.0] * self.CANT_SENIORS
         self.NARR = 0
 
     def simular(self) -> Resultados:
