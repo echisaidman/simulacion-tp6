@@ -117,8 +117,7 @@ class Simulacion:
             return False
 
         r = random.uniform(0, 1)
-        # TODO: ver que porcentaje de arrepentimiento usamos
-        arr = r <= 0.60
+        arr = r <= 0.40
         return arr
 
     def __junior_libre_mayor_sto(self) -> int:
