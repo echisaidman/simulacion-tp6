@@ -1,4 +1,5 @@
 import datetime
+import os.path
 
 import dateutil.tz
 import pandas as pd
@@ -34,7 +35,10 @@ def _guardar_resultados_en_excel(resultados: list[Resultados]) -> None:
     df = _resultados_to_df(resultados)
     sheet_name = _get_excel_sheet_name()
 
-    with pd.ExcelWriter(file_path, engine="openpyxl", mode="a") as writer:
+    excel_existe = os.path.isfile(file_path)
+    file_mode = "a" if excel_existe else "w"
+
+    with pd.ExcelWriter(file_path, engine="openpyxl", mode=file_mode) as writer:
         df.to_excel(writer, sheet_name=sheet_name, index=False)
 
 
