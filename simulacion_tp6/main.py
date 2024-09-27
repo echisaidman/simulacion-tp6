@@ -1,5 +1,7 @@
 import datetime
 import os.path
+import time
+from multiprocessing import Pool, cpu_count
 
 import dateutil.tz
 import pandas as pd
@@ -15,18 +17,28 @@ ESCENARIOS = [(1, 1), (1, 2), (2, 2), (4, 4)]
 
 
 def main():
-    todos_los_resultados: list[Resultados] = []
+    with Pool(processes=cpu_count()) as pool:
+        todos_los_resultados = pool.starmap(
+            func=_simular_alternativa,
+            iterable=ESCENARIOS,
+        )
+        _guardar_resultados_en_excel(todos_los_resultados)
+        print("Los resultados se guardaron correctamente en el Excel.")
 
-    for cant_seniors, cant_juniors in ESCENARIOS:
-        print(f"Evaluando alternativa (S={cant_seniors}, J={cant_juniors})...")
 
-        simulacion = Simulacion(cant_juniors, cant_seniors, TIEMPO_TOTAL_SIMULACION)
-        resultados = simulacion.simular()
+def _simular_alternativa(cant_seniors: int, cant_juniors: int) -> Resultados:
+    print(f"Evaluando alternativa (S={cant_seniors}, J={cant_juniors})...")
+    start_time = time.monotonic()
 
-        todos_los_resultados.append(resultados)
+    simulacion = Simulacion(cant_juniors, cant_seniors, TIEMPO_TOTAL_SIMULACION)
+    resultados = simulacion.simular()
 
-    _guardar_resultados_en_excel(todos_los_resultados)
-    print("Los resultados se guardaron correctamente en el Excel.")
+    end_time = time.monotonic()
+    print(
+        f"Alternativa (S={cant_seniors}, J={cant_juniors}) tardo {datetime.timedelta(seconds=end_time - start_time)}"
+    )
+
+    return resultados
 
 
 def _guardar_resultados_en_excel(resultados: list[Resultados]) -> None:
