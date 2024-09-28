@@ -10,17 +10,23 @@ from pandas import DataFrame
 from simulacion_tp6.models.resultados import Resultados
 from simulacion_tp6.models.simulacion import Simulacion
 
-TIEMPO_TOTAL_SIMULACION = 365 * 24 * 60 * 60
+TIEMPO_TOTAL_SIMULACION = 25 * 365 * 24 * 60 * 60
 
 # Cada escenario es una tupla (SENIORS, JUNIORS)
-ESCENARIOS = [(1, 1), (1, 2), (2, 2), (4, 4)]
+# ESCENARIOS = [(1, 1), (1, 2), (2, 2), (4, 4)]
 
 
 def main():
+    escenarios = [
+        (cant_seniors, cant_juniors)
+        for cant_seniors in range(1, 5)
+        for cant_juniors in range(1, 5)
+    ]
+
     with Pool(processes=cpu_count()) as pool:
         todos_los_resultados = pool.starmap(
             func=_simular_alternativa,
-            iterable=ESCENARIOS,
+            iterable=escenarios,
         )
         _guardar_resultados_en_excel(todos_los_resultados)
         print("Los resultados se guardaron correctamente en el Excel.")
